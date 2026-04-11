@@ -18,7 +18,7 @@ with open('XGBoost.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
 # Step 5: Load the test data
-test_data = pd.read_csv('test.csv')
+test_data = pd.read_csv('Test.csv')
 
 # Step 6: Select the relevant columns
 predictor_columns = ['d*', 'D/d50', 'sheilds parameter', 'Frd', 'W/D']
