@@ -25,7 +25,7 @@ Follow the steps below to reproduce the results or use the trained model for pre
 - Model_training.py
 - Predictor.py
 
-5. Train the Model (Reproduce Results)
+4. Train the Model (Reproduce Results)
 
 - Run the training script:
 
