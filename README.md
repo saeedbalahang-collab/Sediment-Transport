@@ -14,17 +14,53 @@ This repository contains code and resources for reproducing the results of our s
 
 ## Getting Started
 
-To reproduce our results or implement predictions using our trained model, follow these steps:
+Follow the steps below to reproduce the results or use the trained model for prediction.
 
-1. Run the model training script in Google Colab:
-   - Upload Model_training.py.
-   - Execute the script to train and evaluate the model.
-  
-2. To use our trained XGBoost model and predict sample data (Test.csv is diffult file but you can change it to temporal_data.csv or spatial_data.csv file) in Google Colab:
-   - Upload Predictor.py.
-   - Execute the script.
-  
-4. To make predictions on test data, run Predictor.py after training.
+1. Open in Google Colab
+Go to Google Colab
+Create a new notebook
+2. Clone the Repository
+
+Run the following command in a Colab cell:
+
+!git clone https://github.com/saeedbalahang-collab/Sediment-Transport.git
+%cd Sediment-Transport
+
+3. Install Required Libraries
+!pip install -r requirements.txt
+
+5. Train the Model (Reproduce Results)
+
+Run the training script:
+
+!python Model_training.py
+
+This will:
+
+preprocessing the dataset
+Perform hyperparameter tuning using Optuna
+Train the XGBoost model
+Evaluate model performance
+Save outputs (model, scaler, metrics)
+5. Run Predictions Using the Trained Model
+
+To generate predictions using  our provided model:
+
+!python Predictor.py
+
+📌 Notes:
+
+The default input file is Test.csv
+You can replace it with temporal_data.csv or spatial_data.csv
+Ensure the input data has the same feature structure as the training data
+6. Output Files
+
+After execution, the following files will be generated:
+
+XGBoost.pkl → trained model
+scaler.pkl → feature scaler
+metrics_summary.csv → performance metrics
+prediction outputs (if using Predictor.py).
 
 ## Code Availability
 
