@@ -32,7 +32,7 @@ except Exception as e2:
     with open('XGBoost.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
     print("Model loaded with pickle")
-
+# you can also use spatial_data.csv or temporal_data.csv instead of Test.csv 
 test_data = pd.read_csv('Test.csv')
 
 predictor_columns = ['d*', 'D/d50', 'sheilds parameter', 'Frd', 'W/D']
