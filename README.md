@@ -19,17 +19,11 @@ Follow the steps below to reproduce the results or use the trained model for pre
 1. Open in Google Colab
 Go to Google Colab
 Create a new notebook
-2. Clone the Repository
 
-Run the following command in a Colab cell:
+2. Install Required Libraries in requirements.txt
+3. Upload Model_training.py and Predictor.py files to Google Colab
 
-!git clone https://github.com/saeedbalahang-collab/Sediment-Transport.git
-%cd Sediment-Transport
-
-3. Install Required Libraries
-!pip install -r requirements.txt
-
-5. Train the Model (Reproduce Results)
+4. Train the Model (Reproduce Results)
 
 Run the training script:
 
@@ -42,6 +36,7 @@ Perform hyperparameter tuning using Optuna
 Train the XGBoost model
 Evaluate model performance
 Save outputs (model, scaler, metrics)
+
 5. Run Predictions Using the Trained Model
 
 To generate predictions using  our provided model:
