@@ -20,7 +20,7 @@ To reproduce our results or implement predictions using our trained model, follo
    - Upload Model_training.py.
    - Execute the script to train and evaluate the model.
   
-2. To use our trained XGBoost model and predict sample data (Test.csv) in Google Colab:
+2. To use our trained XGBoost model and predict sample data (Test.csv is diffult file but you can change it to temporal_data.csv or spatial_data.csv file) in Google Colab:
    - Upload Predictor.py.
    - Execute the script.
   
