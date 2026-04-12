@@ -17,25 +17,27 @@ This repository contains code and resources for reproducing the results of our s
 Follow the steps below to reproduce the results or use the trained model for prediction.
 
 1. Open in Google Colab
-Go to Google Colab
-Create a new notebook
+- Go to Google Colab
+- Create a new notebook
 
 2. Install Required Libraries in requirements.txt
-3. Upload Model_training.py and Predictor.py files to Google Colab
+3. Upload the following files to the Google Colab:
+- Model_training.py
+- Predictor.py
 
-4. Train the Model (Reproduce Results)
+5. Train the Model (Reproduce Results)
 
-Run the training script:
+- Run the training script:
 
 !python Model_training.py
 
 This will:
 
-preprocessing the dataset
-Perform hyperparameter tuning using Optuna
-Train the XGBoost model
-Evaluate model performance
-Save outputs (model, scaler, metrics)
+- Preprocess the dataset
+- Perform hyperparameter tuning using Optuna
+- Train the XGBoost model
+- Evaluate model performance
+- Save outputs (model, scaler, metrics)
 
 5. Run Predictions Using the Trained Model
 
@@ -51,10 +53,10 @@ Ensure the input data has the same feature structure as the training data
 
 6. Output Files
 After execution, the following files will be generated:
-XGBoost.pkl → trained model
-scaler.pkl → feature scaler
-metrics_summary.csv → performance metrics
-prediction outputs (if using Predictor.py).
+- XGBoost.pkl → trained model
+- scaler.pkl → feature scaler
+- metrics_summary.csv → performance metrics
+- prediction outputs (if using Predictor.py).
 
 ## Code Availability
 
