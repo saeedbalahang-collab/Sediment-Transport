@@ -48,10 +48,9 @@ To generate predictions using  our provided model:
 The default input file is Test.csv
 You can replace it with temporal_data.csv or spatial_data.csv
 Ensure the input data has the same feature structure as the training data
+
 6. Output Files
-
 After execution, the following files will be generated:
-
 XGBoost.pkl → trained model
 scaler.pkl → feature scaler
 metrics_summary.csv → performance metrics
