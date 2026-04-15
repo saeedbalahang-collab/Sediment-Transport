@@ -1,39 +1,37 @@
 # **Transferability Limits of Machine Learning in Fluvial Sediment Transport**
 
-This repository provides the code, data, and trained models used to investigate the **transferability limits of machine learning approaches under climate-driven regime shifts in fluvial sediment transport**.
+This repository provides the code, datasets, and trained models used to investigate the **transferability limits of machine learning models under climate-driven regime shifts in fluvial sediment transport**.
 
-An **XGBoost-based model** was developed and optimized using **Optuna-driven hyperparameter tuning**, and its predictive performance was evaluated across different transfer scenarios (test, spatial, and temporal datasets).
+An **XGBoost-based model** was developed and optimized using Optuna-based hyperparameter tuning. Model performance is evaluated across multiple transfer scenarios (**test, spatial, and temporal datasets**), and **model interpretability is assessed using SHAP (SHapley Additive exPlanations)**.
 
 ---
 
 ## **Repository Structure**
 
 * **`Model_training.py`**
-  Script for data preprocessing, normalization, hyperparameter tuning (Optuna), model training, and performance evaluation.
+  Data preprocessing, normalization, hyperparameter tuning, model training, and evaluation.
 
 * **`Predictor.py`**
-  Script for applying the trained model (`XGBoost.pkl`) and scaler (`scaler.pkl`) to new datasets.
+  Generates predictions using the trained model (`XGBoost.pkl`) and scaler (`scaler.pkl`).
 
-* **`data.csv`**
-  Complete dataset used for model training and validation.
+* **`shap_analysis.py`**
+  Performs SHAP-based interpretability analysis and generates feature importance visualizations for different datasets.
 
-* **`Test.csv`**
-  Sample test dataset for evaluating model predictions.
+* **Datasets**
 
-* **`spatial_data.csv`**
-  Dataset used for assessing spatial transferability.
+  * `data.csv` → Training dataset
+  * `Test.csv` → Test dataset
+  * `spatial_data.csv` → Spatial transfer dataset
+  * `temporal_data.csv` → Temporal transfer dataset
 
-* **`temporal_data.csv`**
-  Dataset used for assessing temporal transferability.
+* **Model Files**
 
-* **`XGBoost.pkl`**
-  Pre-trained XGBoost model.
+  * `XGBoost.pkl` → Trained model
+  * `scaler.pkl` → Feature scaler
 
-* **`scaler.pkl`**
-  Feature scaler used for input normalization.
+* **Other**
 
-* **`requirements.txt`**
-  List of required Python packages.
+  * `requirements.txt` → Required Python packages
 
 ---
 
@@ -43,7 +41,7 @@ An **XGBoost-based model** was developed and optimized using **Optuna-driven hyp
 
 1. Open Google Colab
 2. Create a new notebook
-3. Install required dependencies:
+3. Install dependencies:
 
 ```python
 !pip install -r requirements.txt
@@ -53,120 +51,114 @@ An **XGBoost-based model** was developed and optimized using **Optuna-driven hyp
 
 ### **2. Upload Required Files**
 
-Upload the following files to your Colab environment:
+Upload the following files:
 
 * `Model_training.py`
 * `Predictor.py`
-* Dataset files (if needed)
+* `shap_analysis.py`
+* Any required datasets
 
 ---
 
 ## **Reproducing Model Training**
 
-To reproduce the training process and results:
-
 ```python
 !python Model_training.py
 ```
 
-This script will:
+This will:
 
 * Preprocess and normalize the dataset
-* Perform hyperparameter optimization using Optuna
+* Perform hyperparameter optimization
 * Train the XGBoost model
-* Evaluate model performance
-* Save the trained model and associated outputs
+* Evaluate performance
+* Save model outputs
 
 ---
 
 ## **Running Predictions**
 
-To generate predictions using the provided trained model:
-
 ```python
 !python Predictor.py
 ```
 
-### **Input Data**
+### **Input Options**
 
-* Default input: `Test.csv`
-* Alternative datasets:
+* Default: `Test.csv`
+* Alternatives:
 
-  * `spatial_data.csv` (spatial transferability)
-  * `temporal_data.csv` (temporal transferability)
+  * `spatial_data.csv`
+  * `temporal_data.csv`
 
-⚠️ **Important:**
-All input datasets must have the same feature structure as the training data.
-
----
-
-## **Output Files**
-
-After execution, the following outputs will be generated:
-
-* `XGBoost.pkl` → trained model
-* `scaler.pkl` → feature scaler
-* `metrics_summary.csv` → evaluation metrics
-* Prediction outputs (from `Predictor.py`)
+⚠️ Ensure all datasets have the same feature structure as the training data.
 
 ---
 
 ## **Model Interpretability (SHAP Analysis)**
 
-To enhance model interpretability, we use **SHAP (SHapley Additive exPlanations)** to quantify the contribution of each input feature to the model predictions.
+Model interpretability is implemented using **SHAP (SHapley Additive exPlanations)** to quantify the contribution of each feature to model predictions.
 
-SHAP analysis is performed on three datasets to evaluate model behavior under different transfer scenarios:
+### **Run SHAP Analysis**
 
-* **Test dataset** (`Test.csv`)
-* **Spatial transfer dataset** (`spatial_data.csv`)
-* **Temporal transfer dataset** (`temporal_data.csv`)
+```python
+!python shap_analysis.py
+```
 
-### **Running SHAP Analysis**
+### **What the Script Does**
 
-You can perform SHAP analysis in Google Colab using a custom script or notebook.
+The `shap_analysis.py` script:
 
-The workflow includes:
+* Loads the trained XGBoost model and scaler
+* Reads input datasets
+* Applies feature scaling
+* Computes SHAP values
+* Generates summary plots for each dataset
 
-* Loading the trained XGBoost model and scaler
-* Scaling input features
-* Computing SHAP values
-* Generating summary plots for feature importance
+### **Datasets Used**
 
-### **Output**
+The analysis is performed on:
 
-The analysis produces three SHAP summary plots:
+* `Test.csv` (baseline evaluation)
+* `spatial_data.csv` (spatial transferability)
+* `temporal_data.csv` (temporal transferability)
 
-* `shap_test.png` → Feature importance for test data
-* `shap_spatial.png` → Feature importance for spatial transfer
-* `shap_temporal.png` → Feature importance for temporal transfer
+### **Outputs**
 
-These plots illustrate how feature contributions vary across different environmental and transferability conditions.
+The script generates three SHAP summary plots:
 
+* `shap_test.png`
+* `shap_spatial.png`
+* `shap_temporal.png`
+
+These plots illustrate how feature importance varies across different environmental and transfer scenarios, providing insight into **model robustness and transferability limits**.
+
+---
 
 ## **Study Scope**
 
-This work focuses on evaluating how machine learning models trained under specific hydrological conditions perform when applied to:
+This study evaluates how machine learning models trained under specific hydrological conditions perform when applied to:
 
 * **Unseen spatial domains**
 * **Different temporal regimes**
 
-The results highlight important limitations in model generalization under **non-stationary environmental conditions**.
+The results highlight limitations in model generalization under **non-stat9ionary environmental conditions**.
 
 ---
 
 ## **Code Availability**
 
-The complete codebase is publicly available at:
-👉 [https://github.com/saeedbalahang-collab/Sediment-Transport](https://github.com/saeedbalahang-collab/Sediment-Transport)
+Repository:
+[https://github.com/saeedbalahang-collab/Sediment-Transport](https://github.com/saeedbalahang-collab/Sediment-Transport)
 
-The repository includes all necessary resources to:
+This repository enables users to:
 
-* Reproduce the study
-* Validate results
-* Apply the trained model to new datasets
+* Reproduce model training
+* Generate predictions
+* Perform SHAP-based interpretability analysis
 
 ---
 
 ## **License**
 
 This project is licensed under the **MIT License**.
+
