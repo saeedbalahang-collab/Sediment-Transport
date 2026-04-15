@@ -111,6 +111,38 @@ After execution, the following outputs will be generated:
 
 ---
 
+## **Model Interpretability (SHAP Analysis)**
+
+To enhance model interpretability, we use **SHAP (SHapley Additive exPlanations)** to quantify the contribution of each input feature to the model predictions.
+
+SHAP analysis is performed on three datasets to evaluate model behavior under different transfer scenarios:
+
+* **Test dataset** (`Test.csv`)
+* **Spatial transfer dataset** (`spatial_data.csv`)
+* **Temporal transfer dataset** (`temporal_data.csv`)
+
+### **Running SHAP Analysis**
+
+You can perform SHAP analysis in Google Colab using a custom script or notebook.
+
+The workflow includes:
+
+* Loading the trained XGBoost model and scaler
+* Scaling input features
+* Computing SHAP values
+* Generating summary plots for feature importance
+
+### **Output**
+
+The analysis produces three SHAP summary plots:
+
+* `shap_test.png` → Feature importance for test data
+* `shap_spatial.png` → Feature importance for spatial transfer
+* `shap_temporal.png` → Feature importance for temporal transfer
+
+These plots illustrate how feature contributions vary across different environmental and transferability conditions.
+
+
 ## **Study Scope**
 
 This work focuses on evaluating how machine learning models trained under specific hydrological conditions perform when applied to:
