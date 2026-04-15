@@ -19,7 +19,7 @@ An **XGBoost-based model** was developed and optimized using Optuna-based hyperp
 
 * **Datasets**
 
-  * `data.csv` → Training dataset
+  * `data.csv` → Training and test dataset
   * `Test.csv` → Test dataset
   * `spatial_data.csv` → Spatial transfer dataset
   * `temporal_data.csv` → Temporal transfer dataset
