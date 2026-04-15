@@ -1,71 +1,140 @@
-# Transferability Limits of Machine Learning in Fluvial Sediment Transport
+# **Transferability Limits of Machine Learning in Fluvial Sediment Transport**
 
-This repository contains code and resources for reproducing the results of our study on the transferability limits of machine learning models under climate-driven regime shifts in fluvial sediment transport. We trained an XGBoost model using hyperparameter tuning via Optuna and evaluated its performance on test data.
+This repository provides the code, data, and trained models used to investigate the **transferability limits of machine learning approaches under climate-driven regime shifts in fluvial sediment transport**.
 
-## Repository Contents
+An **XGBoost-based model** was developed and optimized using **Optuna-driven hyperparameter tuning**, and its predictive performance was evaluated across different transfer scenarios (test, spatial, and temporal datasets).
 
-- Model_training.py: This script performs data normalization, model training, hyperparameter tuning, and model evaluation. Users can reproduce the results and obtain a new XGBoost model by running this script in Google Colab.
-- Predictor.py: This script implements the trained XGBoost model (XGBoost.pkl) and scaler (scaler.pkl) on test data to reproduce predictions.
-- data.csv: The full dataset used for training and evaluation the model.
-- Test.csv: The test dataset used as sample data for trained XGBoost model.
-- XGBoost.pkl: The trained XGBoost model.
-- scaler.pkl: The scaler used for normalizing input features.
-- requirements.txt: A list of required Python packages for running the scripts.
+---
 
-## Getting Started
+## **Repository Structure**
 
-Follow the steps below to reproduce the results or use the trained model for prediction.
+* **`Model_training.py`**
+  Script for data preprocessing, normalization, hyperparameter tuning (Optuna), model training, and performance evaluation.
 
-1. Open in Google Colab
-- Go to Google Colab
-- Create a new notebook
+* **`Predictor.py`**
+  Script for applying the trained model (`XGBoost.pkl`) and scaler (`scaler.pkl`) to new datasets.
 
-2. Install Required Libraries in requirements.txt
-3. Upload the following files to the Google Colab:
-- Model_training.py
-- Predictor.py
+* **`data.csv`**
+  Complete dataset used for model training and validation.
 
-4. Train the Model (Reproduce Results)
+* **`Test.csv`**
+  Sample test dataset for evaluating model predictions.
 
-- Run the training script:
+* **`spatial_data.csv`**
+  Dataset used for assessing spatial transferability.
 
+* **`temporal_data.csv`**
+  Dataset used for assessing temporal transferability.
+
+* **`XGBoost.pkl`**
+  Pre-trained XGBoost model.
+
+* **`scaler.pkl`**
+  Feature scaler used for input normalization.
+
+* **`requirements.txt`**
+  List of required Python packages.
+
+---
+
+## **Getting Started**
+
+### **1. Run in Google Colab**
+
+1. Open Google Colab
+2. Create a new notebook
+3. Install required dependencies:
+
+```python
+!pip install -r requirements.txt
+```
+
+---
+
+### **2. Upload Required Files**
+
+Upload the following files to your Colab environment:
+
+* `Model_training.py`
+* `Predictor.py`
+* Dataset files (if needed)
+
+---
+
+## **Reproducing Model Training**
+
+To reproduce the training process and results:
+
+```python
 !python Model_training.py
+```
 
-This will:
+This script will:
 
-- Preprocess the dataset
-- Perform hyperparameter tuning using Optuna
-- Train the XGBoost model
-- Evaluate model performance
-- Save outputs (model, scaler, metrics)
+* Preprocess and normalize the dataset
+* Perform hyperparameter optimization using Optuna
+* Train the XGBoost model
+* Evaluate model performance
+* Save the trained model and associated outputs
 
-5. Run Predictions Using the Trained Model
+---
 
-To generate predictions using  our provided model:
+## **Running Predictions**
 
+To generate predictions using the provided trained model:
+
+```python
 !python Predictor.py
+```
 
-📌 Notes:
+### **Input Data**
 
-The default input file is Test.csv
-You can replace it with temporal_data.csv or spatial_data.csv
-Ensure the input data has the same feature structure as the training data
+* Default input: `Test.csv`
+* Alternative datasets:
 
-6. Output Files
-After execution, the following files will be generated:
-- XGBoost.pkl → trained model
-- scaler.pkl → feature scaler
-- metrics_summary.csv → performance metrics
-- prediction outputs (if using Predictor.py).
+  * `spatial_data.csv` (spatial transferability)
+  * `temporal_data.csv` (temporal transferability)
 
-## Code Availability
+⚠️ **Important:**
+All input datasets must have the same feature structure as the training data.
 
-The code used in this study is available at: [https://github.com/saeedbalahang-collab/Sediment-Transport](https://github.com/saeedbalahang-collab/Sediment-Transport).
+---
 
-The trained models and scaler files can be found in this repository, allowing users to replicate our findings or apply the model to their own datasets.
+## **Output Files**
 
-## License
+After execution, the following outputs will be generated:
 
-This project is licensed under the MIT License.
-   
-   
+* `XGBoost.pkl` → trained model
+* `scaler.pkl` → feature scaler
+* `metrics_summary.csv` → evaluation metrics
+* Prediction outputs (from `Predictor.py`)
+
+---
+
+## **Study Scope**
+
+This work focuses on evaluating how machine learning models trained under specific hydrological conditions perform when applied to:
+
+* **Unseen spatial domains**
+* **Different temporal regimes**
+
+The results highlight important limitations in model generalization under **non-stationary environmental conditions**.
+
+---
+
+## **Code Availability**
+
+The complete codebase is publicly available at:
+👉 [https://github.com/saeedbalahang-collab/Sediment-Transport](https://github.com/saeedbalahang-collab/Sediment-Transport)
+
+The repository includes all necessary resources to:
+
+* Reproduce the study
+* Validate results
+* Apply the trained model to new datasets
+
+---
+
+## **License**
+
+This project is licensed under the **MIT License**.
